@@ -140,6 +140,9 @@ GOOGLE_CLIENT_ID=your_google_client_id
 GOOGLE_CLIENT_SECRET=your_google_client_secret
 
 # Email (Mailtrap or Sendgrid)
+EMAIL_HOST=sandbox.smtp.mailtrap.io
+EMAIL_HOST_USER=your_user
+EMAIL_HOST_PASSWORD=your_password
 
 ## 📖 API Documentation
 Once the server is running, you can access the interactive API documentation to test over 150 endpoints.
@@ -167,6 +170,3 @@ Once the server is running, you can access the interactive API documentation to 
 **Waleed Darwesh** - Backend Software Engineer  
 📧 [Waleeddarwesh2002@gmail.com](mailto:Waleeddarwesh2002@gmail.com)  
 🔗 [LinkedIn Profile](#)
-EMAIL_HOST=sandbox.smtp.mailtrap.io
-EMAIL_HOST_USER=your_user
-EMAIL_HOST_PASSWORD=your_password
