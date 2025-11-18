@@ -1,141 +1,172 @@
-# Craft Application
-The Craft application is a comprehensive platform that integrates multiple functionalities, including a social app, e-commerce app, courses app, and chat app. This extensive project features over 150 endpoints, ensuring seamless interaction and data flow between its various components. The application includes three distinct interfaces: Customer, Crafter, and Delivery, each tailored to meet the specific needs and workflows of its users.
+# 🧶 Craft Application
 
-## Table of Contents
-- [Features](#features)
-- [Endpoints](#endpoints)
-- [Interfaces](#interfaces)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
+![Python](https://img.shields.io/badge/Python-3.11-blue) ![Django](https://img.shields.io/badge/Django-5.0-green) ![DRF](https://img.shields.io/badge/DRF-Rest_Framework-red) ![Docker](https://img.shields.io/badge/Docker-Containerized-blue) ![License](https://img.shields.io/badge/License-MIT-lightgrey)
+
+**Craft** is a comprehensive multi-vendor marketplace and e-learning platform designed to bridge the gap between handcraft suppliers (Crafters) and Customers. 
+
+This extensive backend project exposes over **150 endpoints**, integrating E-commerce logic, Social networking, Video streaming for courses, and Real-time communication into a single, scalable architecture.
+
+## 📋 Table of Contents
+- [Key Features](#key-features)
+- [Technical Architecture](#technical-architecture)
+- [User Interfaces](#user-interfaces)
+- [Prerequisites](#prerequisites)
+- [Installation (Docker - Recommended)](#installation-docker---recommended)
+- [Installation (Manual)](#installation-manual)
+- [Environment Configuration](#environment-configuration)
+- [API Documentation](#api-documentation)
 - [Contact](#contact)
 
-## Features
-- **Social App**: Connect with other users, share updates, and follow each other's activities.
-- **E-commerce App**: Browse and purchase products, manage orders, and handle payments.
-- **Courses App**: Access and enroll in various courses, track progress, and receive certifications.
-- **Chat App**: Communicate with other users through real-time messaging.
+## 🚀 Key Features
 
-## Endpoints
-This project features over 150 endpoints, ensuring seamless interaction and data flow between its various components. These endpoints are designed to handle a wide range of functionalities, from user authentication and profile management to order processing and real-time communication.
+### 🛒 E-commerce Core
+- **Marketplace:** Multi-vendor support allowing Crafters to manage products and stock.
+- **Order Management:** Complex order lifecycle (Cart -> Order -> Shipment -> Delivery).
+- **Financials:** Integrated **Stripe** payments, custom wallet system, and refund handling.
+- **Promotions:** Coupon and discount management system.
 
-## Interfaces
-The application includes three distinct interfaces, each tailored to meet the specific needs and workflows of its users:
-- **Customer**: A user-friendly interface for customers to browse products, enroll in courses, and interact with other users.
-- **Crafter**: A specialized interface for crafters to publish Courses, manage their products, track orders, and engage with customers.
-- **Delivery**: A streamlined interface for delivery personnel to manage deliveries and update order statuses.
+### 🎓 E-Learning Platform
+- **Courses:** Crafters can upload video courses to teach their craft.
+- **Progress Tracking:** Users can enroll in courses and track their learning progress.
+- **Certificates:** System to issue certifications upon course completion.
 
-## Installation
-To install and run the Craft application locally, follow these steps:
+### 💬 Social & Real-Time
+- **Chat App:** Real-time messaging between buyers and sellers using **WebSockets (Django Channels)** and **Redis**.
+- **Social Feed:** Users can follow Crafters, like products, and view activity feeds.
+- **Notifications:** Real-time push notifications for order updates and chat messages.
 
-1. Clone the repository:
-    ```sh
-    git clone https://github.com/Waleeddarwesh/Craft.git
-    ```
-2. Set Up a Virtual Environment
-Create and activate a virtual environment:
-    ```sh
-    pip install virtualenv
-    virtualenv venv
+### 🤖 Smart Features
+- **Recommendations:** AI/Logic-based engine to suggest products and courses.
+- **Background Tasks:** Uses **Celery** for handling heavy tasks like email sending and report generation asynchronously.
+
+## 🛠 Technical Architecture
+
+* **Backend Framework:** Django & Django REST Framework (DRF)
+* **Database:** PostgreSQL
+* **Caching & Message Broker:** Redis
+* **Async Task Queue:** Celery
+* **Real-Time Communication:** Django Channels (ASGI)
+* **Containerization:** Docker & Docker Compose
+* **Authentication:** JWT (SimpleJWT) & Social Auth (Google/Facebook)
+* **API Documentation:** Swagger (drf-yasg)
+
+## 👥 User Interfaces
+The backend serves three distinct frontend applications:
+1.  **Customer App:** For browsing products, buying courses, and social interaction.
+2.  **Crafter Dashboard:** For inventory management, course uploading, and sales analytics.
+3.  **Delivery App:** A streamlined interface for drivers to update shipment statuses.
+
+## ⚙️ Prerequisites
+* Python 3.10+
+* PostgreSQL
+* Redis Server
+* Git
+
+## 🐳 Installation (Docker - Recommended)
+The easiest way to run the project is using Docker Compose.
+
+1.  **Clone the repository:**
+    ```bash
+    git clone [https://github.com/Waleeddarwesh/Craft.git](https://github.com/Waleeddarwesh/Craft.git)
     cd Craft
-    cd venv
-    Scripts/activate
-    cd..
-    ```
-3. Navigate to the project directory:
-    ```sh
-    cd Handcrafts
     ```
 
-4. Install the required dependencies:
-    ```sh
+2.  **Create the environment file:**
+    Create a `.env` file in the root directory (see [Environment Configuration](#environment-configuration)).
+
+3.  **Build and Run:**
+    ```bash
+    docker-compose up --build
+    ```
+    This will spin up the Django web server, PostgreSQL database, Redis, and Celery workers automatically.
+
+## 🔧 Installation (Manual)
+
+If you prefer running it without Docker:
+
+1.  **Set Up Virtual Environment:**
+    ```bash
+    python -m venv venv
+    source venv/bin/activate  # On Windows: venv\Scripts\activate
+    ```
+
+2.  **Install Dependencies:**
+    ```bash
     pip install -r requirements.txt
     ```
 
-5. Apply the migrations:
-    ```sh
+3.  **Configure Environment:**
+    Create a `.env` file in the root folder based on the example below.
+
+4.  **Apply Migrations:**
+    ```bash
     python manage.py migrate
     ```
 
-6. Create a superuser:
-    ```sh
+5.  **Create Superuser:**
+    ```bash
     python manage.py createsuperuser
     ```
 
-7.Configure Django Settings:
-   - Open your `settings.py` file and configure the `DATABASES` setting to use PostgreSQL:
-     ```sh
-     DATABASES = {
-         'default': {
-             'ENGINE': 'django.db.backends.postgresql',
-             'NAME': 'swiftride_db',
-             'USER': 'swiftride_user',
-             'PASSWORD': 'your_password',
-             'HOST': 'localhost',
-             'PORT': '5432',
-         }
-     }
-     ```
-  - Configure Keys and Secrets:
-    - Open `settings.py` and add your configuration details: 
-    ```python
-    # STRIPE
-    STRIPE_SECRET_KEY = 'your_stripe_secret_key'
-    STRIPE_PUBLISHABLE_KEY = 'your_stripe_publishable_key'
-    STRIPE_WEBHOOK_SECRET = 'your_stripe_webhook_secret'
-
-    # GOOGLE
-    GOOGLE_CLIENT_ID = 'your_google_client_id'
-    GOOGLE_CLIENT_SECRET = 'your_google_client_secret'
-
-    # SOCIAL AUTHENTICATION
-    SOCIAL_AUTH_PASSWORD = 'your_social_auth_password'
-    SOCIAL_AUTH_FACEBOOK_KEY = 'your_facebook_key'
-    SOCIAL_AUTH_FACEBOOK_SECRET = 'your_facebook_secret'
-
-    # EMAIL
-    EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
-    EMAIL_HOST_USER = 'your_email_host_user'
-    EMAIL_HOST_PASSWORD = 'your_email_host_password'
-    EMAIL_PORT = '587'
-    ```
-
-    - You can find your Stripe API keys in your Stripe Dashboard under the Developers section.
-    - Obtain Google Client ID and Client Secret from the Google Developers Console.
-    - Use the Mailtrap credentials for testing email functionality. For production, replace with your email service provider’s credentials.
-
-
-8. Run the development server:
-    ```sh
+6.  **Run Server:**
+    ```bash
     python manage.py runserver
     ```
+    *(Note: To use Chat and Async tasks manually, you must verify Redis is running locally).*
 
-## Usage
-Access the Swagger documentation to view all endpoints and their details:
-- **Documentation**: [http://localhost:8000/docs/](http://localhost:8000/docs/)
+## 🔐 Environment Configuration
 
-## Contributing
-We welcome contributions to the Craft application! If you would like to contribute, please follow these steps:
+Create a `.env` file in the root directory (same level as `manage.py`). Do **not** hardcode credentials in `settings.py`.
 
+```ini
+# Core Settings
+DEBUG=True
+SECRET_KEY=your_secret_key_here
+ALLOWED_HOSTS=localhost,127.0.0.1
+
+# Database (PostgreSQL)
+DATABASE_URL=postgres://user:password@localhost:5432/craft_db
+
+# Redis (Required for Chat & Celery)
+REDIS_URL=redis://localhost:6379/0
+
+# Stripe Payments
+STRIPE_SECRET_KEY=sk_test_...
+STRIPE_PUBLISHABLE_KEY=pk_test_...
+STRIPE_WEBHOOK_SECRET=whsec_...
+
+# Google Auth
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+
+# Email (Mailtrap or Sendgrid)
+
+## 📖 API Documentation
+Once the server is running, you can access the interactive API documentation to test over 150 endpoints.
+
+* **Swagger UI:** [http://localhost:8000/docs/](http://localhost:8000/docs/)
+* **Redoc:** [http://localhost:8000/redoc/](http://localhost:8000/redoc/)
+
+## 🤝 Contributing
 1. Fork the repository.
-2. Create a new branch for your feature or bugfix:
-    ```sh
-    git checkout -b your-feature-branch
+2. Create a new branch:
+    ```bash
+    git checkout -b feature/AmazingFeature
     ```
-
-3. Make your changes and commit them:
-    ```sh
-    git commit -m "Description of your changes"
+3. Commit your changes:
+    ```bash
+    git commit -m 'Add some AmazingFeature'
     ```
-
-4. Push your changes to your fork:
-    ```sh
-    git push origin your-feature-branch
+4. Push to the branch:
+    ```bash
+    git push origin feature/AmazingFeature
     ```
+5. Open a Pull Request.
 
-5. Create a pull request with a detailed description of your changes.
-
-## Contact
-For any questions or inquiries, please contact:
-- Name: [Waleed Darwesh]
-- Email: [Waleeddarwesh2002@gmail.com]
+## 📞 Contact
+**Waleed Darwesh** - Backend Software Engineer  
+📧 [Waleeddarwesh2002@gmail.com](mailto:Waleeddarwesh2002@gmail.com)  
+🔗 [LinkedIn Profile](#)
+EMAIL_HOST=sandbox.smtp.mailtrap.io
+EMAIL_HOST_USER=your_user
+EMAIL_HOST_PASSWORD=your_password
