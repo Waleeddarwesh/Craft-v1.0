@@ -169,5 +169,6 @@ Once the server is running, you can access the interactive API documentation to 
 ## 📞 Contact
 **Waleed Darwesh** - Backend Software Engineer  
 📧 [Waleeddarwesh2002@gmail.com](mailto:Waleeddarwesh2002@gmail.com)  
-🔗 [LinkedIn Profile](#)
+🔗 [LinkedIn Profile](#Waleeddarwesh1)
+
 
