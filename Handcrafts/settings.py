@@ -259,17 +259,23 @@ SESSION_CACHE_ALIAS = "default"
 
 # --- Celery Beat Scheduler ---
 # Defines periodic tasks for Celery.
-CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
-CELERY_BEAT_SCHEDULE = {
-    'update-recommendations-daily': {
-        'task': 'recommendations.tasks.update_recommendations_task',
-        'schedule': crontab(hour=1, minute=30), # Runs every day at 1:30 AM
-    },
-    'cancel-pending-orders': {
-        'task': 'orders.tasks.cancel_pending_credit_card_orders_task',
-        'schedule': crontab(hour=0, minute=0),  # Run every day at midnight
-    },
-}
+
+# CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
+# CELERY_BEAT_SCHEDULE = {
+#     'update-recommendations-daily': {
+#         'task': 'recommendations.tasks.update_recommendations_task',
+#         'schedule': crontab(hour=1, minute=30), # Runs every day at 1:30 AM
+#     },
+#     'cancel-pending-orders': {
+#         'task': 'orders.tasks.cancel_pending_credit_card_orders_task',
+#         'schedule': crontab(hour=0, minute=0),  # Run every day at midnight
+#     },
+# }
+
+# Keep these set to True if you want to Pause Celery tasks. 
+# This forces user tasks (like emails) to run immediately without a worker process.
+CELERY_TASK_ALWAYS_EAGER = True
+CELERY_TASK_EAGER_PROPAGATES = True
 
 
 # ==============================================================================
