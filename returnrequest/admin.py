@@ -64,13 +64,13 @@ class BalanceWithdrawRequestAdmin(admin.ModelAdmin):
        return f"EGP {available_balance:.2f}"
 
     def get_readonly_fields(self, request, obj=None):
-        if obj and obj.transfer_status != BalanceWithdrawRequest.TransferStatus.PENDING:
+        if obj and obj.transfer_status != BalanceWithdrawRequest.TransferStatus.REQUESTED:
             return [field.name for field in self.model._meta.fields]
         return self.readonly_fields
 
     @admin.action(description="Approve selected withdrawal requests")
-    def approve_requests(self, request, queryset):
-        pending_requests = queryset.filter(transfer_status=BalanceWithdrawRequest.TransferStatus.PENDING)
+    def approve_requests(self, request, queryset):        
+        pending_requests = queryset.filter(transfer_status=BalanceWithdrawRequest.TransferStatus.REQUESTED)
         for withdrawal_request in pending_requests:
             try:
                 BalanceService.approve_withdrawal(withdrawal_request, request.user)
@@ -82,7 +82,7 @@ class BalanceWithdrawRequestAdmin(admin.ModelAdmin):
 
     @admin.action(description="Reject selected requests with notes")
     def reject_requests_with_notes(self, request, queryset):
-        pending_requests = queryset.filter(transfer_status=BalanceWithdrawRequest.TransferStatus.PENDING)
+        pending_requests = queryset.filter(transfer_status=BalanceWithdrawRequest.TransferStatus.REQUESTED)
 
         if 'apply' in request.POST:
             form = RejectForm(request.POST)
