@@ -28,7 +28,7 @@ The project follows scalable backend architecture principles using Django and mo
 - [Key Features](#-key-features)
 - [Technical Architecture](#-technical-architecture)
 - [User Interfaces](#-user-interfaces)
-- [Prerequisites](#-prerequisites)
+- [Prerequisites](#prerequisites)
 - [Installation Using Docker](#-installation-using-docker)
 - [Manual Installation](#-manual-installation)
 - [Environment Configuration](#-environment-configuration)
