@@ -79,17 +79,17 @@ The project follows scalable backend architecture principles using Django and mo
 
 # 🛠 Technical Architecture
 
-| Technology | Usage |
+| Component | Technology |
 |---|---|
-| Django | Backend Framework |
-| Django REST Framework | REST APIs |
-| PostgreSQL | Primary Database |
-| Redis | Cache & Message Broker |
-| Celery | Background Tasks |
-| Django Channels | Real-Time Communication |
-| Docker & Docker Compose | Containerization |
-| JWT (SimpleJWT) | Authentication |
-| Swagger (drf-yasg) | API Documentation |
+| Backend Framework | Django |
+| REST API Layer | Django REST Framework |
+| Primary Database | PostgreSQL |
+| Cache & Message Broker | Redis |
+| Background Tasks | Celery |
+| Real-Time Communication | Django Channels |
+| Containerization | Docker & Docker Compose |
+| Authentication | JWT (SimpleJWT) |
+| API Documentation | Swagger (drf-yasg) |
 
 ---
 
