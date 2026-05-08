@@ -135,8 +135,8 @@ The recommended way to run the project.
 ## 1️⃣ Clone Repository
 
 ```bash
-git clone https://github.com/Waleeddarwesh/Craft-V1.0.git
-cd Craft-V1.0
+git clone https://github.com/Waleeddarwesh/Craft-v1.0.git
+cd Craft-v1.0
 ````
 
 ---
