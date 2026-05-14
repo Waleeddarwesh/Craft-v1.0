@@ -311,7 +311,7 @@ git push origin feature/AmazingFeature
 
 ## Waleed Darwesh
 
-Backend Software Engineer | Django Developer | Junior DevOps Engineer
+Django Developer | Junior DevOps Engineer
 
 📧 Email:
 [Waleeddarwesh2002@gmail.com](mailto:Waleeddarwesh2002@gmail.com)
